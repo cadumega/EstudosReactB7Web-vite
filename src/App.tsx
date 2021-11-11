@@ -1,43 +1,31 @@
-import {useState } from 'react';
+import { useState } from 'react';
+import './style.css';
 
-const App = () => {
-    const [show, setShow] = useState(false);
+const Compras = () => {
+    const [contador, setContador] = useState(0);
 
-    const handleClick = () => {
-        setShow( !show )
-        
-        // if(show) {
-        //     setShow(false);
-        // } else {
-        //     setShow(true);
-        // }
+    function comprar() {
+        setContador(contador + 1)
+    }
+
+    function excluir() {
+        setContador(contador - 1)
     }
 
     return (
-        <div>
-            <button onClick = {handleClick}> {show ? 'Ocultar' : 'Mostrar'} </button>
+        <div className="main">
+            <h4 className="titleProduct">Quantidade de Produtos XYZ:</h4>
+            <p className="cont">{contador} queijo(s)</p>
 
-            {show && 
-                <div>
-                    Blabla texto ipsum illori....
-                </div>
-            }
+            <button className="btn-" onClick={excluir}> - </button>
+            <button className="btnP" onClick={comprar}> + </button>
+
+
+            <p className="totalP">Total: {contador} unidades.</p>
+            <p className="price">Preço: R$ {contador * 20}</p>
         </div>
     )
 }
 
-export default App;
+export default Compras;
 
-
-// Forma mais fácil: 
-// Set show inicia como falso.. o meu state.
-// Texto ser exibido se minha state estiver como true, preciso criar uma expressão que é uma verificação caso seja positivo.
-// Se show estiver true elem ostra blabla...
-// No btn irei colocar um handleClick de evento, preciso criar a fç anônima handleClick e irei colocar um setShow true.
-// Para exibir o blabla não fiz uma ação direta, eu criei um intermediário que é show , em que as duas coisas mexeram com ela. Quando show estiver true mostrar o blabla.
-
-// Toogle - executa uma vez faz algo, quando executo retorna ao estado de origem. Como fazer?
-// Usar condicional if(show) else... consigo resumir em uma linha invertida com setShow( !show )
-
-// Mudar o texto do botão. Condicional ternário junto com a var state.
-// Quando se tem uma condição faz da 1ª maneira, se for toogle faz 2ª a condicional com ternário.
