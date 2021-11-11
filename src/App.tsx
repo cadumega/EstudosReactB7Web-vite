@@ -1,45 +1,28 @@
-import React, { useState } from 'react';
+import { Pessoa } from "./components/Pessoa"
 
 const App = () => {
-    const [name, setName] = useState('');
-    const [sobrenome, setSobrenome] = useState('');
-    const [idade, setIdade] = useState('');
-
-    const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setName(event.target.value);
-    }
-    const handleInput2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSobrenome(event.target.value);
-    }
-    const handleInput3 = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIdade(event.target.value);
-    }
+    let list = [
+        {name: 'Carlos', age:30},
+        {name: 'João', age:40},
+        {name: 'Pedro', age:50},
+        {name: 'Maria', age:10},
+        {name: 'Carol', age:25},
+    ]
 
     return (
         <div>
-            Nome:
-            <input type="text" value={name} onChange={handleInput} />
-            <br />
-            Sobrenome:
-            <input type="text" value={sobrenome} onChange={handleInput2} />
-            <br />
-            Idade:
-            <input type="text" value={idade} onChange={handleInput3} />
-            <hr />
-
-            Olá {name} {sobrenome}, tudo bem?
-            <br />
-            Você tem {idade} anos.
+            <h2> Lista de presença</h2>
+            <ul>
+                {list.map((item, index) => (
+                    <Pessoa key={index} data= {item}/>
+                ))}
+            </ul>
         </div>
     )
+
 }
 
 export default App;
 
-// Todo sistema irá usar algum tipo de input, no qual é um html em que o usuário irá poder inserir algum dado.
-// O js não permite alteração pois esta associado ao state. Preciso criar um evento e a função.
-// Preciso importar React por fora o type para input é React.changeEvent<HTMLInputElement , type para change event.
-// Ação que modifica várias outras alterações no meu sistema, por exemplo um cadastro do cliente.
-
-// Meu state esta armazenando o conteúdo de armazenagem, criamos um formulário com uma state específica. O valor que você digita esta sendo salvo, em que poderá utilizar como quiser com esses valores.
-// Associamos duplamente o state ao value, e associamos para alterar o valor.
+// Coloco meu componente pessoa para repetir as informações, só preciso passar data e o meu objeto item.
+// Atentar ao erro de key prop. Preciso colocar a prop key com index, mesmo que não receba a prop, pois ela serve para o map. E não ao compoenente.
